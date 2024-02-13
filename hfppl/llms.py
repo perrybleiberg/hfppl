@@ -211,8 +211,8 @@ class CachedCausalLM:
             model (hfppl.llms.CachedCausalLM): the LLaMPPL-compatible interface to the HuggingFace model.
         """
         with torch.no_grad():
-            tok = AutoTokenizer.from_pretrained(model_id, use_auth_token=auth_token)
-            mod = AutoModelForCausalLM.from_pretrained(model_id, do_sample=True, use_auth_token=auth_token, device_map="auto", load_in_8bit=load_in_8bit)
+            tok = AutoTokenizer.from_pretrained(model_id, token=auth_token)
+            mod = AutoModelForCausalLM.from_pretrained(model_id, do_sample=True, token=auth_token, device_map="auto", load_in_8bit=load_in_8bit)
         
         return CachedCausalLM(mod, tok)
     
